@@ -18,20 +18,41 @@ pip install -r requirements.txt
 
 # Как запустить
 
+### Запуск сервера
+Для запуска сервера используйте команду:
+
 ```python3
-python main.py
+python server.py
 ```
+
+После запуска сервера откройте в браузере ваши `urls`:
+
+Пример сторонних ссылок:
+http://127.0.0.1:8080/?urls=https://ya.ru,https://google.com
+
+Пример одной ссылки статьи с сайта inosmi: 
+http://127.0.0.1:8080/?urls=https://inosmi.ru/20260312/sport-277489870.html
+
+Пример нескольких ссылок статей с сайта inosmi: 
+http://127.0.0.1:8080/?urls=https://inosmi.ru/20260312/sport-277489870.html,https://inosmi.ru/20260312/iran-277487384.html
 
 # Как запустить тесты
 
-Для тестирования используется [pytest](https://docs.pytest.org/en/latest/), тестами покрыты фрагменты кода сложные в отладке: text_tools.py и адаптеры. Команды для запуска тестов:
+Для тестирования используется [pytest](https://docs.pytest.org/en/latest/). Тесты вынесены в отдельную папку `tests` и покрывают сложные фрагменты кода. Команды для запуска тестов:
 
-```
-python -m pytest adapters/inosmi_ru.py
+### Запустить все тесты
+```python3
+python -m pytest
 ```
 
+### Запустить с подробным выводом
+```python3
+python -m pytest -v
 ```
-python -m pytest text_tools.py
+
+### Запустить только тесты из конкретного файла
+```python3
+python -m pytest tests/test_sanitize.py -v
 ```
 
 # Цели проекта
