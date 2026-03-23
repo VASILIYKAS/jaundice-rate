@@ -23,9 +23,13 @@ async def split_by_words(morph, text):
             raise asyncio.TimeoutError("Обработка текста превысила 3 секунды")
         
         cleaned_word = _clean_word(word)
-        normalized_word = morph.parse(cleaned_word)[0].normal_form
-        if len(normalized_word) > 2 or normalized_word == 'не':
-            words.append(normalized_word)
+
+        parsed = await asyncio.to_thread(morph.parse, cleaned_word)
+        normalized = parsed[0].normal_form
+
+        if len(normalized) > 2 or normalized == 'не':
+            words.append(normalized)
+            
     return words
 
 
